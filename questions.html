@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Autism Screening - 2-Year-Old</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f0f8ff;
+      padding: 30px;
+      line-height: 1.6;
+    }
+
+    h1 {
+      text-align: center;
+      color: #2a5d9f;
+    }
+
+    .question-block {
+      background: #ffffff;
+      padding: 16px 20px;
+      margin-bottom: 20px;
+      border-left: 5px solid #4facfe;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+
+    .question-block p {
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    .question-block label {
+      display: block;
+      margin-left: 10px;
+      margin-bottom: 5px;
+    }
+
+    .btn-primary {
+      display: block;
+      width: 100%;
+      margin-top: 30px;
+      padding: 14px;
+      background: linear-gradient(135deg, #4facfe, #00f2fe);
+      color: white;
+      font-weight: bold;
+      font-size: 16px;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .btn-primary:hover {
+      background: #328efc;
+    }
+
+    .result-box {
+      margin-top: 30px;
+      background: #eaf6ff;
+      padding: 20px;
+      border-left: 6px solid #4facfe;
+      border-radius: 10px;
+      font-size: 16px;
+      color: #004085;
+    }
+
+    .result-box h3 {
+      margin-top: 0;
+    }
+
+    .suggestions {
+      margin-top: 20px;
+      background: #fffbea;
+      padding: 15px;
+      border-left: 6px solid #ffc107;
+      border-radius: 8px;
+      color: #856404;
+    }
+
+    .suggestions ul {
+      padding-left: 20px;
+    }
+
+    .suggestions li {
+      margin-bottom: 8px;
+    }
+
+    .next-step {
+      margin-top: 30px;
+      text-align: center;
+    }
+
+    .btn-next {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .btn-next:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🧒 Early Autism Screening (Age: 2 Years)</h1>
+
+  <form id="autismForm"></form>
+
+  <button class="btn-primary" onclick="analyzeAutismScore()">Analyze Results</button>
+  <div id="autismResult" class="result-box"></div>
+
+  <div class="next-step">
+    <small>Final Step: View Results ➡️</small><br/>
+    <a href="results.html">
+      <button class="btn-next">View Results</button>
+    </a>
+  </div>
+
+  <script>
+    const questions = [
+      "Does your child respond when you call their name?",
+      "Does your child make eye contact with you during play or feeding?",
+      "Does your child smile back when you smile at them?",
+      "Does your child try to share things they like with you?",
+      "Does your child point to things to show interest?",
+      "Does your child bring objects to show you?",
+      "Does your child wave 'hello' or 'goodbye' without being prompted?",
+      "Does your child use gestures like nodding or shaking their head for 'yes/no'?",
+      "Does your child imitate everyday actions?",
+      "Does your child show interest in other children?",
+      "Does your child use simple phrases?",
+      "Does your child respond to simple directions?",
+      "Does your child babble or speak in a way that sounds like conversation?",
+      "Does your child use words to ask for help?",
+      "Does your child understand simple questions?",
+      "Does your child get unusually upset by small changes in routine?",
+      "Does your child have repetitive movements?",
+      "Does your child play with toys the same way every time?",
+      "Does your child focus intensely on small details?",
+      "Does your child have very strong reactions to sounds, textures, or lights?",
+      "Does your child pretend play?",
+      "Does your child use toys for their intended purpose?",
+      "Does your child show interest in a variety of toys, or only a few favorites?",
+      "Does your child seem overly sensitive to noise?",
+      "Does your child seek unusual sensory experiences?",
+      "Does your child have extreme tantrums over small triggers?",
+      "Does your child seem unaware of danger?",
+      "Does your child follow your gaze if you look at something?",
+      "Does your child check your reaction in new situations?",
+      "Does your child seek comfort from you when upset?"
+    ];
+
+    const form = document.getElementById("autismForm");
+
+    questions.forEach((question, index) => {
+      const block = document.createElement("div");
+      block.className = "question-block";
+      const qNum = index + 1;
+      block.innerHTML = `
+        <p><strong>Question ${qNum}:</strong> ${question}</p>
+        <label><input type="radio" name="q${qNum}" value="0"> Never</label>
+        <label><input type="radio" name="q${qNum}" value="1"> Rarely</label>
+        <label><input type="radio" name="q${qNum}" value="2"> Sometimes</label>
+        <label><input type="radio" name="q${qNum}" value="3"> Often</label>
+        <label><input type="radio" name="q${qNum}" value="4"> Always</label>
+      `;
+      form.appendChild(block);
+    });
+
+    function analyzeAutismScore() {
+      let alwaysCount = 0;
+
+      for (let i = 1; i <= 30; i++) {
+        const selected = document.querySelector(`input[name="q${i}"]:checked`);
+        if (selected && selected.value === "4") {
+          alwaysCount++;
+        }
+      }
+
+      let questionResult = alwaysCount >= 20
+        ? "Low autistic traits"
+        : "Likely autistic traits detected";
+
+      localStorage.setItem("questionResult", questionResult);
+
+      let resultText = '';
+      let suggestionsHTML = '';
+
+      if (alwaysCount >= 20) {
+        resultText = `<p><strong>🟢 Low likelihood of autism traits.</strong><br>Your child meets most expected developmental milestones.</p>`;
+        suggestionsHTML = `
+          <div class="suggestions">
+            <h4>Suggestions:</h4>
+            <ul>
+              <li>Continue engaging with your child through play, reading, and talking.</li>
+              <li>Track their progress regularly through milestone checklists.</li>
+              <li>Repeat this screening in a few months for continued observation.</li>
+            </ul>
+          </div>
+        `;
+      } else {
+        resultText = `<p><strong>🔴 Higher likelihood of autism traits.</strong><br>It is recommended to seek a professional evaluation for further assessment.</p>`;
+        suggestionsHTML = `
+          <div class="suggestions">
+            <h4>Recommended Actions:</h4>
+            <ul>
+              <li>Consult a pediatrician or child development specialist.</li>
+              <li>Request a formal autism evaluation (e.g., ADOS, M-CHAT).</li>
+              <li>Start early intervention therapy if recommended.</li>
+              <li>Keep a diary of behaviors to discuss with professionals.</li>
+            </ul>
+          </div>
+        `;
+      }
+
+      document.getElementById("autismResult").innerHTML = `
+        <h3>Screening Result</h3>
+        <p><strong>'Always' Responses:</strong> ${alwaysCount} out of 30</p>
+        ${resultText}
+        ${suggestionsHTML}
+      `;
+    }
+  </script>
+</body>
+</html>

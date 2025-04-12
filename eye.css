@@ -1,0 +1,102 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(145deg, #d2e9ff, #f0faff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  color: #333;
+}
+
+.eye-box {
+  width: 400px;
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 24px 28px;
+  box-shadow: 12px 12px 24px #c5d3e0, -12px -12px 24px #ffffff;
+  text-align: center;
+  animation: floatIn 0.5s ease-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@keyframes floatIn {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+h2 {
+  color: #2a5d9f;
+  margin-bottom: 20px;
+}
+
+.video-grid {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4/3;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+
+video, canvas {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  left: 0;
+  top: 0;
+}
+
+#timer {
+  font-size: 28px;
+  font-weight: bold;
+  color: #1976d2;
+  margin: 12px 0;
+}
+
+.result-box {
+  font-size: 14px;
+  margin-top: 16px;
+  padding: 12px;
+  background: #eaf6ff;
+  border-left: 5px solid #4facfe;
+  border-radius: 10px;
+  color: #004085;
+  font-weight: 500;
+}
+
+.next-step {
+  margin-top: 24px;
+  text-align: center;
+}
+
+.btn-next {
+  margin-top: 8px;
+  padding: 10px 18px;
+  font-size: 15px;
+  background: linear-gradient(135deg, #4facfe, #00f2fe);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.3s ease;
+  width: 100%;
+}
+
+.btn-next:hover {
+  transform: translateY(-2px);
+  background: #3ca3fc;
+}

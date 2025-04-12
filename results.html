@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Autism Analysis Results</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+      background: #f5f5f5;
+      transition: all 0.4s ease;
+    }
+
+    .result-box {
+      background: #fff;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    h2 {
+      text-align: center;
+    }
+
+    #finalBox {
+      font-size: 18px;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+
+    /* Green Success Theme with 3D Effect */
+    .success-box {
+      background-color: #d0f9d3;
+      border: 4px solid #00c853;
+      box-shadow: 0 12px 30px rgba(0, 200, 83, 0.5);
+      color: #1b5e20;
+      transform: translateY(-2px);
+    }
+
+    /* RED Full Page Effect for High Risk */
+    .danger-mode {
+      background-color: #ffebee;
+      animation: redGlow 1.5s infinite alternate;
+    }
+
+    @keyframes redGlow {
+      0% {
+        box-shadow: 0 0 30px rgba(255, 0, 0, 0.5);
+      }
+      100% {
+        box-shadow: 0 0 60px rgba(255, 0, 0, 0.9);
+      }
+    }
+
+    .danger-text {
+      background-color: #ffcdd2;
+      border: 4px solid red;
+      color: darkred;
+      box-shadow: 0 12px 30px rgba(255, 0, 0, 0.5);
+      transform: scale(1.02);
+    }
+  </style>
+</head>
+<body id="pageBody">
+  <h2>🧠 Autism Assessment Results</h2>
+
+  <div class="result-box">
+    <strong>1. Brain Workload:</strong>
+    <p id="brainResult">Loading...</p>
+  </div>
+
+  <div class="result-box">
+    <strong>2. Smartwatch Monitor:</strong>
+    <p id="watchResult">Loading...</p>
+  </div>
+
+  <div class="result-box">
+    <strong>3. Eye Monitoring:</strong>
+    <p id="eyeResult">Loading...</p>
+  </div>
+
+  <div class="result-box">
+    <strong>4. Questionnaire Analysis:</strong>
+    <p id="questionResult">Loading...</p>
+  </div>
+
+  <div class="result-box" id="finalBox">
+    <strong>✅ Final Output:</strong>
+    <p id="finalResult">Analyzing...</p>
+  </div>
+
+  <script>
+    const brain = localStorage.getItem("brainResult") || "No Data";
+    const watch = localStorage.getItem("watchResult") || "No Data";
+    const eye = localStorage.getItem("eyeResult") || "No Data";
+    const question = localStorage.getItem("questionResult") || "No Data";
+
+    document.getElementById("brainResult").textContent = brain;
+    document.getElementById("watchResult").textContent = watch;
+    document.getElementById("eyeResult").textContent = eye;
+    document.getElementById("questionResult").textContent = question;
+
+    const finalBox = document.getElementById("finalBox");
+    const finalResult = document.getElementById("finalResult");
+    const body = document.getElementById("pageBody");
+
+    let score = 0;
+    if (brain.includes("Abnormal")) score++;
+    if (watch.includes("Elevated")) score++;
+    if (eye.includes("High")) score++;
+    if (question.includes("Likely")) score++;
+
+    if (score >= 3) {
+      finalBox.classList.add("danger-text");
+      body.classList.add("danger-mode");
+      finalResult.textContent = "⚠️ High chance of Autism. Please consult a specialist immediately.";
+    } else if (score === 2) {
+      finalResult.textContent = "🟡 Moderate risk. Suggest professional evaluation.";
+    } else {
+      finalBox.classList.add("success-box");
+      finalResult.textContent = "✅ Low signs of Autism. Continue healthy habits and regular observation.";
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pulse Oximeter & Brain Workload</title>
+  <link rel="stylesheet" href="pulse.css" />
+</head>
+<body>
+  <div class="pulse-container">
+    <h1>🩺 Brain Workload using Pulse Oximeter</h1>
+
+    <div class="input-group">
+      <label for="pulse">Pulse Rate (BPM):</label>
+      <input type="number" id="pulse" placeholder="e.g. 85" />
+    </div>
+
+    <div class="input-group">
+      <label for="spo2">Oxygen Saturation (SpO₂ %):</label>
+      <input type="number" id="spo2" placeholder="e.g. 98" />
+    </div>
+
+    <button class="btn-primary" onclick="calculateBrainLoad()">⚙️ Calculate</button>
+
+    <div id="result" class="result-box"></div>
+
+    <!-- Smartwatch Step Link -->
+    <div class="next-step">
+      <p>Next Step: Smartwatch Health Data ➡️</p>
+      <a href="smartwatch.html">
+        <button class="btn-secondary">Go to Smartwatch Step</button>
+      </a>
+    </div>
+  </div>
+
+  <script src="pulse.js"></script>
+  <script src="smartwatch.js"></script>
+</body>
+</html>

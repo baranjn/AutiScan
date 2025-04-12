@@ -1,0 +1,94 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background: #f3f3f3;
+  color: #333;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 30px;
+  background: white;
+  border-radius: 8px;
+  margin-top: 40px;
+}
+
+h1, h2 {
+  color: #1976d2;
+}
+
+ul {
+  text-align: left;
+  padding-left: 20px;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #1976d2;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  margin-top: 15px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #1565c0;
+}
+
+.step {
+  display: none;
+}
+
+.step.active, .step:not(.hidden):not(.step) {
+  display: block;
+}
+
+input {
+  padding: 10px;
+  margin: 10px 0;
+  width: 100%;
+}
+
+.video-container {
+  position: relative;
+  width: 640px;
+  height: 480px;
+  margin: 20px auto;
+  background: #000;
+}
+
+video, canvas {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+#countdown {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #000000a0;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.header-logos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  margin-top: 20px;
+}
+
+.logo {
+  height: 120px;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+  border-radius: 12px;
+}

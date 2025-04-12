@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smartwatch Health Metrics</title>
+  <link rel="stylesheet" href="smartwatch.css" />
+</head>
+<body>
+  <div class="pulse-container smartwatch-page">
+    <h1>⌚ Smartwatch Health Metrics</h1>
+
+    <div class="input-group">
+      <label for="heartRate">Heart Rate (BPM):</label>
+      <input type="number" id="heartRate" placeholder="e.g. 78" />
+    </div>
+
+    <div class="input-group">
+      <label for="steps">Steps Count:</label>
+      <input type="number" id="steps" placeholder="e.g. 3500" />
+    </div>
+
+    <div class="input-group">
+      <label for="stress">Stress Level (1-100):</label>
+      <input type="number" id="stress" placeholder="e.g. 42" />
+    </div>
+
+    <div class="input-group">
+      <label for="sleep">Sleep Duration (Hours):</label>
+      <input type="number" id="sleep" placeholder="e.g. 7.5" />
+    </div>
+
+    <button class="btn-primary" onclick="calculateSmartwatchMetrics()">⚙️ Calculate</button>
+
+    <div id="result" class="result-box"></div>
+
+    <!-- Next Step: Eye Movement Tracking -->
+    <div class="next-step">
+      <p>Next Step: Eye Movement Tracking 👁️</p>
+      <button class="btn-secondary" onclick="goToEyeTracker()">Go to Eye Tracker Step</button>
+    </div>
+  </div>
+
+  <script src="smartwatch.js"></script>
+  <script>
+    function goToEyeTracker() {
+      window.location.href = 'eye.html';
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Eye Movement Monitor</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #e0e5ec;
+      margin: 0;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+    }
+
+    h1 {
+      color: #2c3e50;
+      margin-bottom: 8px;
+      text-shadow: 1px 1px 2px #fff;
+    }
+
+    p {
+      margin-bottom: 30px;
+      color: #555;
+    }
+
+    #monitor-wrapper {
+      position: relative;
+      width: 640px;
+      height: 480px;
+      border-radius: 20px;
+      box-shadow: 10px 10px 30px #a3b1c6, -10px -10px 30px #ffffff;
+      overflow: hidden;
+      margin-bottom: 30px;
+    }
+
+    #video, #canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      border-radius: 20px;
+    }
+
+    #timer {
+      font-size: 32px;
+      color: #333;
+      padding: 10px 20px;
+      border-radius: 12px;
+      background: #e0e5ec;
+      box-shadow: inset 6px 6px 12px #c5cace, inset -6px -6px 12px #ffffff;
+      margin-bottom: 20px;
+    }
+
+    #result {
+      font-size: 18px;
+      font-weight: 500;
+      color: #1e8449;
+      padding: 15px 25px;
+      border-radius: 12px;
+      background: #e0e5ec;
+      box-shadow: inset 6px 6px 12px #c5cace, inset -6px -6px 12px #ffffff;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    #nextBtn {
+      padding: 14px 30px;
+      font-size: 16px;
+      border: none;
+      border-radius: 30px;
+      background: #e0e5ec;
+      color: #3498db;
+      box-shadow: 6px 6px 12px #c5cace, -6px -6px 12px #ffffff;
+      cursor: pointer;
+      display: none;
+      transition: all 0.3s ease-in-out;
+    }
+
+    #nextBtn:hover {
+      box-shadow: inset 4px 4px 10px #c5cace, inset -4px -4px 10px #ffffff;
+      background: #d1d9e6;
+    }
+  </style>
+
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/face_mesh.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"></script>
+</head>
+<body>
+
+  <h1>Eye Movement Monitor</h1>
+  <p>Look at the screen for 30 seconds. Your eye movement will be analyzed.</p>
+
+  <div id="monitor-wrapper">
+    <video id="video" width="640" height="480" autoplay muted playsinline></video>
+    <canvas id="canvas" width="640" height="480"></canvas>
+  </div>
+
+  <div id="timer">30</div>
+  <div id="result"></div>
+
+  <button id="nextBtn" onclick="location.assign('questions.html')">Next: Questionnaire</button>
+
+
+  <script src="eye.js"></script>
+</body>
+</html>
